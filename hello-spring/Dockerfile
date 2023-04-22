@@ -1,4 +1,4 @@
-FROM eclipse-temurin:11
+FROM eclipse-temurin:11 as builder
 COPY gradlew .
 COPY gradle gradle
 COPY build.gradle .
