@@ -8,8 +8,7 @@ RUN chmod +x ./gradlew
 RUN ./gradlew bootJar
 
 FROM eclipse-temurin:11
-VOLUME /tmp
-ARG JAR_FILE=./build/libs/*.jar
-COPY ${JAR_FILE} app.jar
+COPY --from=builder build/libs/*.jar app.jar
+
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/app.jar"]
