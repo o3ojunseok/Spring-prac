@@ -6,7 +6,7 @@ import java.util.*;
 
 public class MemoryMemberRepository implements MemberRepository{
 
-    private static Map<Long, Member> store = new HashMap<>(); // 예제라 간단하게 쓰는거임
+    static Map<Long, Member> store = new HashMap<>(); // 예제라 간단하게 쓰는거임
     private static Long sequence = 0L; // 동시성 문제 고려해야하지만 예제니까
     @Override
     public Member save(Member member) {
@@ -30,5 +30,9 @@ public class MemoryMemberRepository implements MemberRepository{
     @Override
     public List<Member> findAll() {
         return new ArrayList<>(store.values());
+    }
+
+    public void clearStore() {
+        store.clear();
     }
 }
