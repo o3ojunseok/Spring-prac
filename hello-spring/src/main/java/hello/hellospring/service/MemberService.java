@@ -19,7 +19,7 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    // 회원 가입
+    // 회원 가입q
     public Long join(Member member) {
         // 중복회원 X
 //        Optional<Member> result = memberRepository.findByName(member.getName()); // command option v
