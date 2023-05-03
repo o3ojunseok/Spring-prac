@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service // 이걸통해 Autowired랑 연결해주는걸 명시해줌 -> 스프링컨테이너에 등록
+//@Service // 이걸통해 Autowired랑 연결해주는걸 명시해줌 -> 스프링컨테이너에 등록
 public class MemberService {
 
     private final MemberRepository memberRepository;

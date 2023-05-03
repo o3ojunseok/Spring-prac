@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-@Repository
+//@Repository
 public class MemoryMemberRepository implements MemberRepository{
 
     static Map<Long, Member> store = new HashMap<>(); // 예제라 간단하게 쓰는거임

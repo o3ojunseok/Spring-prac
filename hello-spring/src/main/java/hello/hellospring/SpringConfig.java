@@ -1,35 +1,37 @@
-//package hello.hellospring;
-//
-//import hello.hellospring.repository.MemberRepository;
-//import hello.hellospring.repository.MemoryMemberRepository;
-//import hello.hellospring.service.MemberService;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.beans.factory.annotation.Autowired;
-//
-//// 자바 코드로 직접 빈 작성
-//@Configuration
-//public class SpringConfig {
-//    private Datasource datasource;
+package hello.hellospring;
+
+import hello.hellospring.repository.JdbcMemberRepository;
+import hello.hellospring.repository.MemberRepository;
+import hello.hellospring.repository.MemoryMemberRepository;
+import hello.hellospring.service.MemberService;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.sql.DataSource;
+
+// 자바 코드로 직접 빈 작성
+@Configuration
+public class SpringConfig {
+    private DataSource dataSource;
 
 
-//    @Autowired
-//    public SpringConfig(DataSource datasource) {
-//      this.dataSource = dataSource;
-//    }
+    @Autowired
+    public SpringConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
+    @Bean
+    public MemberService memberService() {
+        return new MemberService(memberRepository());
+    }
 
-//    @Bean
-//    public MemberService memberService() {
-//        return new MemberService(memberRepository());
-//    }
-//
-//    @Bean
-//    public MemberRepository memberRepository() {
+    @Bean
+    public MemberRepository memberRepository() {
 //        return new MemoryMemberRepository();
-        // return new JdbcMemberRepository();  // DB
-//    }
-//}
+         return new JdbcMemberRepository(dataSource);  // DB
+    }
+}
 //
 //// Controller 어노테이션은 그대로 둔다. 단 서비스 레포지토리 애노테이션은 제거한 상태여야 함.
 //
