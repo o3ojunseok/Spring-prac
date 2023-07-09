@@ -29,10 +29,19 @@ public class MemberService {
 //        });
 
         // optional말고 권장 방법
-        validateDuplicateMember(member); // control option m 따로 메서드를 빼줌
+        long start = System.currentTimeMillis();
 
-        memberRepository.save(member);
-       return member.getId();
+        try {
+            validateDuplicateMember(member); // control option m 따로 메서드를 빼줌
+            memberRepository.save(member);
+            return member.getId();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("timeMs = " + timeMs);
+        }
+
+        // 모든 메서드에 이걸 적용하기엔 너무 많고 중복되는 작업임..
     }
 
     private void validateDuplicateMember(Member member) {
